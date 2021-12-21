@@ -10,21 +10,36 @@
 
 //doesn't work yet, run in https://replit.com/languages/javascript
 function chunk(array, size) {
-  var temp = [];
-  var result= [];
+  const chunked = [];
 
-  for (i = 0; i < array.length; i += size){
-    for (j = 0; j < size; j++){
-      if (!array[i + j]){
-        break;
-      }
-      temp.push(array[i + j]);
+  for (let element of array){
+    const last = chunked[chunked.length - 1];
+
+    if (!last || last.length === size){
+      chunked.push([element]);
+    } else {
+      last.push(element);
     }
-    result.push(temp);
-    temp = [];
   }
-    
-  return result;
+
+  return chunked;
 }
 
 module.exports = chunk;
+
+
+// var temp = [];
+// var result= [];
+
+// for (i = 0; i < array.length; i += size){
+//   for (j = 0; j < size; j++){
+//     if (!array[i + j]){
+//       break;
+//     }
+//     temp.push(array[i + j]);
+//   }
+//   result.push(temp);
+//   temp = [];
+// }
+  
+// return result;
