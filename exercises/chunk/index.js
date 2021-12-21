@@ -8,6 +8,23 @@
 // chunk([1, 2, 3, 4, 5], 4) --> [[ 1, 2, 3, 4], [5]]
 // chunk([1, 2, 3, 4, 5], 10) --> [[ 1, 2, 3, 4, 5]]
 
-function chunk(array, size) {}
+//doesn't work yet, run in https://replit.com/languages/javascript
+function chunk(array, size) {
+  var temp = [];
+  var result= [];
+
+  for (i = 0; i < array.length; i += size){
+    for (j = 0; j < size; j++){
+      if (!array[i + j]){
+        break;
+      }
+      temp.push(array[i + j]);
+    }
+    result.push(temp);
+    temp = [];
+  }
+    
+  return result;
+}
 
 module.exports = chunk;
