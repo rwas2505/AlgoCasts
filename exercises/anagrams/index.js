@@ -9,46 +9,30 @@
 //   anagrams('Hi there', 'Bye there') --> False
 
 function anagrams(stringA, stringB) {
-  var dictA = {};
-var dictB = {};
-  
-  var sanitizedStringA = stringA.replace(/[^\w]/g, "").toLowerCase();
+  const aCharMap = buildCharMap(stringA);
+  const bCharMap = buildCharMap(stringB);
 
-  var sanitizedStringB = stringB.replace(/[^\w]/g, "").toLowerCase();
+  if (Object.keys(aCharMap).length !== Object.keys(bCharMap).length){
+    return false;
+  }
 
-   for (i=0; i < sanitizedStringA.length; i++){
-    if (sanitizedStringA[i] in dictA){
-      dictA[sanitizedStringA[i]] += 1
-    } else{
-      dictA[sanitizedStringA[i]] = 1
+  for (let char in aCharMap){
+    if (aCharMap[char] !== bCharMap[char]){
+      return false;
     }
   }
 
-  for (i=0; i < sanitizedStringB.length; i++){
-    if (sanitizedStringB[i] in dictB){
-      dictB[sanitizedStringB[i]] += 1
-    } else{
-      dictB[sanitizedStringB[i]] = 1
-    }
-  }
-
-  var lengthA = Object.keys(dictA).length;
-  var lengthB = Object.keys(dictB).length;
-
-  var validLengths = lengthA === lengthB;
-
-  const test = {a: 1, b: 2, c: 3};
-  
-var result = true;
-  
-for (const [key, value] of Object.entries(dictA)) {
-
-  if (dictB[key] != value){
-    result = false;
-  }
+  return true;
 }
 
-  return result && validLengths;
+function buildCharMap(str) {
+  const charMap = {};
+
+  for (let char of str.replace(/[^\w]/g, "").toLowerCase()){
+    charMap[char] = charMap[char] + 1 || 1;
+  }
+
+  return charMap;
 }
 
 module.exports = anagrams;
