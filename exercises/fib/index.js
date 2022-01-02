@@ -8,6 +8,25 @@
 // Example:
 //   fib(4) === 3
 
-function fib(n) {}
+function fib(n) {
+  let currentNum = 1;
+  let currentIndex = 1;
+  let targetIndex = n;
+  let sequence = [0,1];
+
+  if (n <= 1){
+    return sequence[n];
+  }
+
+  for (i = 2; i <= targetIndex; i++){
+    currentIndex = i;
+
+    currentNum = currentNum + sequence[currentIndex - 2];
+
+    sequence.push(currentNum);
+  }
+
+  return sequence[targetIndex];
+}
 
 module.exports = fib;
