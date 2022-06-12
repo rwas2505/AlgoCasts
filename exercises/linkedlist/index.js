@@ -24,6 +24,23 @@ class LinkedList {
     // oneLiner would be this.head = new Node(data, this.head);
   };
 
+  size(){
+    if(!this.head){
+      return 0;
+    };
+
+    let counter = 1;
+    let currentNode = this.head;
+
+    while(currentNode.next){
+      counter += 1;
+
+      currentNode = currentNode.next;
+    }
+
+    return counter;
+  }
+
 }
 
 module.exports = { Node, LinkedList };
