@@ -41,117 +41,98 @@ class LinkedList {
     return counter;
   }
 
-  getFirst(){
+  getFirst() {
     return this.head;
   }
 
-  getLast(){
-    if(!this.head){
+  getLast() {
+    if (!this.head) {
       return null;
-    };
-
-    let currentNode = this.head;
-
-    while(currentNode.next){
-      currentNode = currentNode.next;
     }
 
-    return currentNode;
+    let node = this.head;
+    while (node) {
+      if (!node.next) {
+        return node;
+      }
+      node = node.next;
+    }
   }
 
-  clear(){
+  clear() {
     this.head = null;
   }
 
-  removeFirst(){
-    if(!this.head){
+  removeFirst() {
+    if (!this.head) {
       return;
     }
 
     this.head = this.head.next;
   }
 
-  removeLast(){
-    if(!this.head){
+  removeLast() {
+    if (!this.head) {
       return;
     }
 
-    if(!this.head.next){
+    if (!this.head.next) {
       this.head = null;
       return;
     }
 
-    let currentNode = this.head;
-    let nextNode = currentNode.next;
-
-    while(nextNode.next){
-      currentNode = nextNode;
-      nextNode = currentNode.next;
+    let previous = this.head;
+    let node = this.head.next;
+    while (node.next) {
+      previous = node;
+      node = node.next;
     }
-
-    currentNode.next = null;
+    previous.next = null;
   }
 
-  insertLast(data){
-    const newLastNode = new Node(data);
+  insertLast(data) {
+    const last = this.getLast();
 
-    if(!this.head){
-      this.head = newLastNode;
+    if (last) {
+      // There are some existing nodes in our chain
+      last.next = new Node(data);
+    } else {
+      // The chain is empty!
+      this.head = new Node(data);
     }
-
-    let currentLastNode = this.getLast();
-    
-    currentLastNode.next = newLastNode;
   }
 
-  getAt(index){
-    if(!this.head){
-      return null;
-    }
-
+  getAt(index) {
     let counter = 0;
     let node = this.head;
-
-    while(node){
-      if (counter === index){
+    while (node) {
+      if (counter === index) {
         return node;
       }
 
       counter++;
       node = node.next;
     }
-    
-    // my solution but not sure if works bc test hangs
-    // while(counter < index){
-    //   if(!node.next){
-    //     return null;
-    //   }
-
-    //   counter +=1;
-    //   node = node.next;
-    // }
-
     return null;
   }
 
-  removeAt(index){
-    if (!this.head){
+  removeAt(index) {
+    if (!this.head) {
       return;
     }
 
-    if(index === 0){
+    if (index === 0) {
       this.head = this.head.next;
       return;
     }
 
-    const previousNode = this.getAt(index -1);
-
-    if(!previousNode || !previousNode.next){
+    const previous = this.getAt(index - 1);
+    if (!previous || !previous.next) {
       return;
     }
-
-    previousNode.next = previousNode.next.next;
+    previous.next = previous.next.next;
   }
+
 }
 
 module.exports = { Node, LinkedList };
