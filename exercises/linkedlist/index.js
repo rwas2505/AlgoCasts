@@ -12,7 +12,18 @@ class Node {
 class LinkedList {
   constructor(){
     this.head = null;
-  }
+  };
+
+  insertFirst(data){
+    const existingHead = this.head;
+
+    const newNode = new Node(data, existingHead);
+
+    this.head = newNode;
+
+    // oneLiner would be this.head = new Node(data, this.head);
+  };
+
 }
 
 module.exports = { Node, LinkedList };
