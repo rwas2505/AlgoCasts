@@ -45,6 +45,20 @@ class LinkedList {
     return this.head;
   }
 
+  getLast(){
+    if(!this.head){
+      return null;
+    };
+
+    let currentNode = this.head;
+
+    while(currentNode.next){
+      currentNode = currentNode.next;
+    }
+
+    return currentNode;
+  }
+
 }
 
 module.exports = { Node, LinkedList };
