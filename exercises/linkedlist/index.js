@@ -91,6 +91,48 @@ class LinkedList {
 
     currentNode.next = null;
   }
+
+  insertLast(data){
+    const newLastNode = new Node(data);
+
+    if(!this.head){
+      this.head = newLastNode;
+    }
+
+    let currentLastNode = this.getLast();
+    
+    currentLastNode.next = newLastNode;
+  }
+
+  getAt(index){
+    if(!this.head){
+      return null;
+    }
+
+    let counter = 0;
+    let node = this.head;
+
+    while(node){
+      if (counter === index){
+        return node;
+      }
+
+      counter++;
+      node = node.next;
+    }
+    
+    // my solution but not sure if works bc test hangs
+    // while(counter < index){
+    //   if(!node.next){
+    //     return null;
+    //   }
+
+    //   counter +=1;
+    //   node = node.next;
+    // }
+
+    return null;
+  }
 }
 
 module.exports = { Node, LinkedList };
