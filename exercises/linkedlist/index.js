@@ -183,7 +183,16 @@ class LinkedList {
 
     while(currentNode){
       func(currentNode, index);
+      index++;
       currentNode = currentNode.next;
+    }
+  }
+
+  *[Symbol.iterator](){
+    let node = this.head;
+    while(node){
+      yield node;
+      node = node.next;
     }
   }
 }
