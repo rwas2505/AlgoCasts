@@ -12,23 +12,38 @@
 //    fromLast(list, 2).data // 'b'
 
 function fromLast(list, n) {
-  let fast = list.head;
-  let slow = list.head;
+  let slow = list.getFirst();
+  let fast = list.getFirst();
 
-  while(fast){
-    for(i=0; i<=n; i++){
-      fast = fast.next;
-    }
+  while(n > 0) {
+    fast = fast.next;
+    n--;
+  }
 
-    if(!fast){
-      return slow;
-    }
-
-    slow=slow.next;
-    fast = slow;
+  while(fast.next){
+    slow = slow.next;
+    fast = fast.next;
   }
 
   return slow;
+  
+  // let fast = list.head;
+  // let slow = list.head;
+
+  // while(fast){
+  //   for(i=0; i<=n; i++){
+  //     fast = fast.next;
+  //   }
+
+  //   if(!fast){
+  //     return slow;
+  //   }
+
+  //   slow=slow.next;
+  //   fast = slow;
+  // }
+
+  // return slow;
 }
 
 module.exports = fromLast;
