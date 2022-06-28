@@ -33,14 +33,24 @@ class Tree {
   }
 
   traverseBF(fn){
-    const nodes = [this.root];
+    // const nodes = [this.root];
 
-    while(nodes[0]){
-      nodes.push(...nodes[0].children);
+    // while(nodes[0]){
+    //   nodes.push(...nodes[0].children);
 
-      fn(nodes[0]);
+    //   fn(nodes[0]);
 
-      nodes.shift();
+    //   nodes.shift();
+    // }
+
+    const arr = [this.root];
+
+    while(arr.length){
+      const node = arr.shift();
+
+      arr.push(...node.children);
+
+      fn(node);
     }
   }
 }
